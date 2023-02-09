@@ -16,7 +16,7 @@ try:
 except Exception as e:
     print ("Exception: ", e)
     msg =  msg_when_elk_query_fail(e)
-    alert.send_telegram(msg, CHAT_ID_FOR_ADMIN)
+    # alert.send_telegram(msg, CHAT_ID_FOR_ADMIN)
 
 def analyze(search_param ):
     try:
@@ -25,7 +25,7 @@ def analyze(search_param ):
     except Exception as e:
         print ("Exception: ", e)
         msg =  msg_when_elk_query_fail(e)
-        alert.send_telegram(msg, CHAT_ID_FOR_ADMIN)
+        # alert.send_telegram(msg, CHAT_ID_FOR_ADMIN)
 
     msg_list = [] # List intialization
 

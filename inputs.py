@@ -13,6 +13,10 @@ CHAT_ID = config.get('telegram', 'CHAT_ID')
 CHAT_ID_FOR_ADMIN = config.get('telegram', 'CHAT_ID_FOR_ADMIN')
 
 ELK_HOST = config.get('DE', 'ELK_HOST')
+ELK_PORT = config.get('DE', 'ELK_PORT')
+USERNAME = config.get('DE', 'USERNAME')
+PASSWORD = config.get('DE', 'PASSWORD')
+
 INDEX_NAME = config.get('DE', 'INDEX_NAME')
 TIME_GET_LOG = config.get('DE', 'TIME_GET_LOG')
 

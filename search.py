@@ -3,7 +3,7 @@ import json, requests, sys
 from datetime import datetime
 from inputs import *
 
-elastic_client = Elasticsearch([ELK_HOST], sniff_on_start=True, maxsize=25000,TimeoutError=100)
+elastic_client = Elasticsearch([ELK_HOST], sniff_on_start=True, maxsize=2500,TimeoutError=100, http_auth=(USERNAME, PASSWORD))
 
 def make_query(filter):    
     index_exists = elastic_client.indices.exists(index=INDEX_NAME)
