@@ -1,0 +1,30 @@
+import sys, os, configparser
+
+config_path = os.path.join(sys.path[0],'config.ini')
+if not os.path.exists(config_path):
+    raise Exception("Config file not found: {}".format(config_path))
+
+config = configparser.RawConfigParser()
+config.optionxform = lambda option: option
+config.read(config_path)
+
+TELEGRAM_TOKEN = config.get('telegram', 'TELEGRAM_TOKEN')
+CHAT_ID = config.get('telegram', 'CHAT_ID')
+CHAT_ID_FOR_ADMIN = config.get('telegram', 'CHAT_ID_FOR_ADMIN')
+
+ELK_HOST = config.get('DE', 'ELK_HOST')
+INDEX_NAME = config.get('DE', 'INDEX_NAME')
+TIME_GET_LOG = config.get('DE', 'TIME_GET_LOG')
+
+probe_icmp = {
+            'query': {
+                "bool":{
+                    "should":[                                
+                        {"match_phrase_prefix": {"commandResult": "PING"}}
+                    ],            
+                    "filter":[
+                        {"range": {"@timestamp": {"gte": "now-" + TIME_GET_LOG}}}
+                    ]
+                }
+            }
+    } #end

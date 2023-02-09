@@ -1,0 +1,17 @@
+curl http://172.20.7.101:9200
+{
+  "name" : "node-1",
+  "cluster_name" : "fci-nmds-cluster",
+  "cluster_uuid" : "y3mA5xirT8Cq-8zjDEVYJg",
+  "version" : {
+    "number" : "5.4.1",
+    "build_hash" : "2cfe0df",
+    "build_date" : "2017-05-29T16:05:51.443Z",
+    "build_snapshot" : false,
+    "lucene_version" : "6.5.1"
+  },
+  "tagline" : "You Know, for Search"
+}
+
+
+

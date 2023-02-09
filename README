@@ -1,0 +1,49 @@
+##Openstack Error Log Detection
+##Setup Environment (Using Python3)
+
+apt-get install python3-virtualenv
+cd /opt
+virtualenv -p python3 elk-cso
+pip3 install -r  requirements.txt
+
+## RUN
+Run under the crontab:
+*/2 * * * * cd /opt/elk/elk-detect-error; source /opt/elk/bin/activate ; /opt/elk/bin/python3 /opt/elk/elk-detect-error/DE.py
+
+#How to configure
+- config.ini ->  configure ELK servers, settings,  and Telegram Group Alert
+- inputs.py -> configure error patterns for Openstack services, example:
+
+libvirt_search_param = {
+            'query': {
+                "bool":{
+                    "must":[                                
+                        {"match": {"programname": "libvirt"}},
+
+                        {
+                            "bool": {
+                                "should": [
+                                        {"match": {"log_level": "error"}},
+                                        {"match": {"Payload": "error"}},
+                                        {"match": {"Payload": "unexcep"}},
+                                        {"match": {"Payload": "reconnect"}},
+                                        {"match": {"Payload": "fail"}},
+                                ]
+                            }
+                        }
+                    ],
+                    "must_not":[
+                        {"match_phrase_prefix": {"Payload": "End of file from qemu monitor"}},
+                        {"match_phrase_prefix": {"Payload": "argument unsupported: QEMU guest agent is not configured"}},
+                        {"match_phrase_prefix": {"Payload": "invalid argument: KVM is not supported by '/usr/bin/qemu-system"}},     
+                        {"match_phrase_prefix": {"Payload": "End of file while reading data: Input/output error"}},                                                                    
+                    ],                    
+
+                    "filter":[
+                        {"range": {"@timestamp": {"gte": "now-" + TIME_GET_LOG}}}
+                    ]
+                }
+            }
+    }
+
+[22264965.263519] EXT4-fs warning (device dm-0): htree_dirblock_to_tree:997: inode #8781826: lblock 0: comm bash: error -12 reading directory block

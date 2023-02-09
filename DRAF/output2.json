@@ -1,0 +1,435 @@
+{
+    "_index": "central-index-2022-12-09",
+    "_type": "command-result",
+    "_id": "AYT2Q-5Fa2FEj_V3dvsW",
+    "_version": 1,
+    "_score": null,
+    "_source": {
+      "command": "ping",
+      "parameters": [
+        "/tmp/[ping]-941172d0-760c-11ed-85e2-73dc8935da38_91351c73-7eac-4cdc-98ce-515333f63d1e.sh"
+      ],
+      "fullCommand": "ping -c 10 -s 56 ops_han_103.176.146.108",
+      "pid": 2471155,
+      "requestTime": "2022-12-09T09:42:02.089Z",
+      "commandResult": "PING OPS_HAN_103.176.146.108 (103.176.146.108) 56(84) bytes of data.\n64 bytes from OPS_HAN_103.176.146.108 (103.176.146.108): icmp_seq=1 ttl=49 time=23.0 ms\n64 bytes from OPS_HAN_103.176.146.108 (103.176.146.108): icmp_seq=2 ttl=49 time=22.9 ms\n64 bytes from OPS_HAN_103.176.146.108 (103.176.146.108): icmp_seq=3 ttl=49 time=22.7 ms\n64 bytes from OPS_HAN_103.176.146.108 (103.176.146.108): icmp_seq=4 ttl=49 time=22.7 ms\n64 bytes from OPS_HAN_103.176.146.108 (103.176.146.108): icmp_seq=5 ttl=49 time=22.8 ms\n64 bytes from OPS_HAN_103.176.146.108 (103.176.146.108): icmp_seq=6 ttl=49 time=22.9 ms\n64 bytes from OPS_HAN_103.176.146.108 (103.176.146.108): icmp_seq=7 ttl=49 time=23.0 ms\n64 bytes from OPS_HAN_103.176.146.108 (103.176.146.108): icmp_seq=8 ttl=49 time=22.8 ms\n64 bytes from OPS_HAN_103.176.146.108 (103.176.146.108): icmp_seq=9 ttl=49 time=22.9 ms\n64 bytes from OPS_HAN_103.176.146.108 (103.176.146.108): icmp_seq=10 ttl=49 time=22.8 ms\n\n--- OPS_HAN_103.176.146.108 ping statistics ---\n10 packets transmitted, 10 received, 0% packet loss, time 9016ms\nrtt min/avg/max/mdev = 22.737/22.862/23.026/0.085 ms",
+      "status": "Active",
+      "deviceHostName": "sgn-cprobe-01",
+      "devicePlatform": "linux",
+      "customerUsername": "NotFound",
+      "customerIp": "103.174.212.65",
+      "customerIsp": "AS140766 FPT TELECOM COMPANY",
+      "customerContract": "",
+      "customerDesc": "",
+      "customerModem": "",
+      "customerMacModem": "",
+      "deviceSerialNumber": "005056018603",
+      "vlan19IpAddress": "100.100.100.1",
+      "popInfo": {
+        "popId": "Pop_default",
+        "_id": "Pop_default",
+        "_type": "Pop",
+        "address": "Nhà khách hàng",
+        "branch": "Không rõ tỉnh thành",
+        "fullInfoUpperCase": "NHA KHACH HANG, KHGN999, KHONG RO TINH THANH",
+        "functionPop": "POP PON",
+        "pStatus": "Đang sử dụng",
+        "popName": "KHGN999",
+        "popType": "Nhà khách hàng",
+        "state": null,
+        "ward": null,
+        "createdUser": null,
+        "modifiedUser": null,
+        "modifiedDate": null,
+        "zone": "V0",
+        "gpsLocation": null,
+        "mpop": null,
+        "gpsSource": "ISC",
+        "pppoeUsername": [
+          "",
+          ""
+        ],
+        "pppoeInterface": [
+          "",
+          ""
+        ],
+        "pppoeVlanId": [
+          "",
+          ""
+        ],
+        "eventId": "21e5f0a0-5bba-4c1b-b35b-897485a6fc50"
+      },
+      "deviceNote": "SGN-CUSTOMER-PROBE-01",
+      "exitInfo": {
+        "code": 0,
+        "pid": 2471155
+      },
+      "responseTime": "2022-12-09T09:42:25.506Z",
+      "runAt": "2022-12-09T09:42:13.000Z",
+      "finishAt": "2022-12-09T09:42:25.000Z",
+      "secondToFinish": 12,
+      "taskKey": "[_OPS_PING_TO_HAN_]-[ping]-181321f0-57a9-11ed-9d4f-a97bbdcb340e_93c5f64a-7fc2-406d-b15e-a8634b68e4ed-20221209T1642",
+      "taskName": "OPS_PING_TO_HAN-20221209T1642",
+      "commandNote": "PING_OPS_HAN_103.176.146.108",
+      "assignedUser": "lamnv23",
+      "details": [
+        {
+          "key": "TOTAL_PACKET_SENT",
+          "value": "10",
+          "unit": "ms"
+        },
+        {
+          "key": "TOTAL_PACKET_RECEIVED",
+          "value": "10",
+          "unit": "ms"
+        },
+        {
+          "key": "PACKET_LOSS",
+          "value": "0",
+          "unit": "%"
+        },
+        {
+          "key": "TOTAL_TIME",
+          "value": "9016",
+          "unit": "ms"
+        },
+        {
+          "index": 0,
+          "key": "PACKAGE_SIZE_RECEIVE",
+          "value": "64",
+          "unit": "bytes"
+        },
+        {
+          "index": 0,
+          "key": "FROM",
+          "value": "OPS_HAN_103.176.146.108 (103.176.146.108)"
+        },
+        {
+          "index": 0,
+          "key": "ICMP_SEQ",
+          "value": "1"
+        },
+        {
+          "index": 0,
+          "key": "TTL",
+          "value": "49"
+        },
+        {
+          "index": 0,
+          "key": "TIME",
+          "value": "23.0",
+          "unit": "ms"
+        },
+        {
+          "index": 1,
+          "key": "PACKAGE_SIZE_RECEIVE",
+          "value": "64",
+          "unit": "bytes"
+        },
+        {
+          "index": 1,
+          "key": "FROM",
+          "value": "OPS_HAN_103.176.146.108 (103.176.146.108)"
+        },
+        {
+          "index": 1,
+          "key": "ICMP_SEQ",
+          "value": "2"
+        },
+        {
+          "index": 1,
+          "key": "TTL",
+          "value": "49"
+        },
+        {
+          "index": 1,
+          "key": "TIME",
+          "value": "22.9",
+          "unit": "ms"
+        },
+        {
+          "index": 2,
+          "key": "PACKAGE_SIZE_RECEIVE",
+          "value": "64",
+          "unit": "bytes"
+        },
+        {
+          "index": 2,
+          "key": "FROM",
+          "value": "OPS_HAN_103.176.146.108 (103.176.146.108)"
+        },
+        {
+          "index": 2,
+          "key": "ICMP_SEQ",
+          "value": "3"
+        },
+        {
+          "index": 2,
+          "key": "TTL",
+          "value": "49"
+        },
+        {
+          "index": 2,
+          "key": "TIME",
+          "value": "22.7",
+          "unit": "ms"
+        },
+        {
+          "index": 3,
+          "key": "PACKAGE_SIZE_RECEIVE",
+          "value": "64",
+          "unit": "bytes"
+        },
+        {
+          "index": 3,
+          "key": "FROM",
+          "value": "OPS_HAN_103.176.146.108 (103.176.146.108)"
+        },
+        {
+          "index": 3,
+          "key": "ICMP_SEQ",
+          "value": "4"
+        },
+        {
+          "index": 3,
+          "key": "TTL",
+          "value": "49"
+        },
+        {
+          "index": 3,
+          "key": "TIME",
+          "value": "22.7",
+          "unit": "ms"
+        },
+        {
+          "index": 4,
+          "key": "PACKAGE_SIZE_RECEIVE",
+          "value": "64",
+          "unit": "bytes"
+        },
+        {
+          "index": 4,
+          "key": "FROM",
+          "value": "OPS_HAN_103.176.146.108 (103.176.146.108)"
+        },
+        {
+          "index": 4,
+          "key": "ICMP_SEQ",
+          "value": "5"
+        },
+        {
+          "index": 4,
+          "key": "TTL",
+          "value": "49"
+        },
+        {
+          "index": 4,
+          "key": "TIME",
+          "value": "22.8",
+          "unit": "ms"
+        },
+        {
+          "index": 5,
+          "key": "PACKAGE_SIZE_RECEIVE",
+          "value": "64",
+          "unit": "bytes"
+        },
+        {
+          "index": 5,
+          "key": "FROM",
+          "value": "OPS_HAN_103.176.146.108 (103.176.146.108)"
+        },
+        {
+          "index": 5,
+          "key": "ICMP_SEQ",
+          "value": "6"
+        },
+        {
+          "index": 5,
+          "key": "TTL",
+          "value": "49"
+        },
+        {
+          "index": 5,
+          "key": "TIME",
+          "value": "22.9",
+          "unit": "ms"
+        },
+        {
+          "index": 6,
+          "key": "PACKAGE_SIZE_RECEIVE",
+          "value": "64",
+          "unit": "bytes"
+        },
+        {
+          "index": 6,
+          "key": "FROM",
+          "value": "OPS_HAN_103.176.146.108 (103.176.146.108)"
+        },
+        {
+          "index": 6,
+          "key": "ICMP_SEQ",
+          "value": "7"
+        },
+        {
+          "index": 6,
+          "key": "TTL",
+          "value": "49"
+        },
+        {
+          "index": 6,
+          "key": "TIME",
+          "value": "23.0",
+          "unit": "ms"
+        },
+        {
+          "index": 7,
+          "key": "PACKAGE_SIZE_RECEIVE",
+          "value": "64",
+          "unit": "bytes"
+        },
+        {
+          "index": 7,
+          "key": "FROM",
+          "value": "OPS_HAN_103.176.146.108 (103.176.146.108)"
+        },
+        {
+          "index": 7,
+          "key": "ICMP_SEQ",
+          "value": "8"
+        },
+        {
+          "index": 7,
+          "key": "TTL",
+          "value": "49"
+        },
+        {
+          "index": 7,
+          "key": "TIME",
+          "value": "22.8",
+          "unit": "ms"
+        },
+        {
+          "index": 8,
+          "key": "PACKAGE_SIZE_RECEIVE",
+          "value": "64",
+          "unit": "bytes"
+        },
+        {
+          "index": 8,
+          "key": "FROM",
+          "value": "OPS_HAN_103.176.146.108 (103.176.146.108)"
+        },
+        {
+          "index": 8,
+          "key": "ICMP_SEQ",
+          "value": "9"
+        },
+        {
+          "index": 8,
+          "key": "TTL",
+          "value": "49"
+        },
+        {
+          "index": 8,
+          "key": "TIME",
+          "value": "22.9",
+          "unit": "ms"
+        },
+        {
+          "index": 9,
+          "key": "PACKAGE_SIZE_RECEIVE",
+          "value": "64",
+          "unit": "bytes"
+        },
+        {
+          "index": 9,
+          "key": "FROM",
+          "value": "OPS_HAN_103.176.146.108 (103.176.146.108)"
+        },
+        {
+          "index": 9,
+          "key": "ICMP_SEQ",
+          "value": "10"
+        },
+        {
+          "index": 9,
+          "key": "TTL",
+          "value": "49"
+        },
+        {
+          "index": 9,
+          "key": "TIME",
+          "value": "22.8",
+          "unit": "ms"
+        },
+        {
+          "key": "MIN",
+          "value": "22.737",
+          "unit": "ms"
+        },
+        {
+          "key": "AVG",
+          "value": "22.862",
+          "unit": "ms"
+        },
+        {
+          "key": "MAX",
+          "value": "23.026",
+          "unit": "ms"
+        },
+        {
+          "key": "MDEV",
+          "value": "0.085",
+          "unit": "ms"
+        }
+      ],
+      "summary": {
+        "totalSent": "10",
+        "totalReceived": "10",
+        "packetLoss": 0,
+        "packetLossPercent": 0,
+        "packetLossFloat": 0,
+        "host": "OPS_HAN_103.176.146.108",
+        "min": 22.737,
+        "latency": 22.862,
+        "max": 23.026,
+        "mdev": 0.085
+      },
+      "summaryConsolidated": true,
+      "createdDate": "2022-12-09T09:42:25.515Z",
+      "siteId": "005056018603_c47a0d93-4e10-49b1-af14-895d03be1000_499dee83-3989-4b22-b168-ae0f93f3c918",
+      "syncedDate": "2022-12-09T09:42:37.744Z",
+      "@timestamp": "2022-12-09T09:42:25.515Z",
+      "storedDate": "2022-12-09T09:42:37.886Z"
+    },
+    "fields": {
+      "requestTime": [
+        1670578922089
+      ],
+      "storedDate": [
+        1670578957886
+      ],
+      "@timestamp": [
+        1670578945515
+      ],
+      "createdDate": [
+        1670578945515
+      ],
+      "syncedDate": [
+        1670578957744
+      ],
+      "runAt": [
+        1670578933000
+      ],
+      "responseTime": [
+        1670578945506
+      ],
+      "finishAt": [
+        1670578945000
+      ]
+    },
+    "sort": [
+      1670578945506
+    ]
+  }
