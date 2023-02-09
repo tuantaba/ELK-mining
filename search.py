@@ -3,7 +3,13 @@ import json, requests, sys
 from datetime import datetime
 from inputs import *
 
-elastic_client = Elasticsearch([ELK_HOST], sniff_on_start=True, maxsize=2500,TimeoutError=100, http_auth=(USERNAME, PASSWORD))
+try:
+    print("Try to connect to server", ELK_HOST)
+    elastic_client = Elasticsearch([ELK_HOST], sniff_on_start=True, maxsize=250,TimeoutError=100, http_auth=(USERNAME, PASSWORD))
+    print("Connection to ES Server successful")
+except:
+    print("Error: Unable to connect to server ", ELK_HOST)
+    exit(1)    
 
 def make_query(filter):    
     index_exists = elastic_client.indices.exists(index=INDEX_NAME)
