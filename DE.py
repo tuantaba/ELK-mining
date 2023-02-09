@@ -39,57 +39,59 @@ def analyze(search_param ):
 
     result_dics = {}  #inital dics()
     for log in response['hits']['hits']:
-        # print ("----")
-        # print (log)
+        print ("----")
+        print (log)
         
     #     #need to edit
     #     print (log)
-        # print ("print _source")
+        print ("print _source")
         # print(log["_source"])
-        try:
-            PROBE_HOSTNAME =  log["_source"]['deviceHostName']            
-        except:
-            PROBE_HOSTNAME = "null"        
-        try:
-            DEST_GROUP =  log["_source"]['taskName']
-        except:
-            DEST_GROUP = "null"
+
+
+        # try:
+        #     PROBE_HOSTNAME =  log["_source"]['deviceHostName']            
+        # except:
+        #     PROBE_HOSTNAME = "null"        
+        # try:
+        #     DEST_GROUP =  log["_source"]['taskName']
+        # except:
+        #     DEST_GROUP = "null"
                     
-        try:
-            LATENCY =  log["_source"]['summary']['latency']
-        except:
-            LATENCY = "null"
+        # try:
+        #     LATENCY =  log["_source"]['summary']['latency']
+        # except:
+        #     LATENCY = "null"
 
-        try:
-            LOSS_PERCENT =  log["_source"]['summary']['packetLossPercent']
-        except:
-            LOSS_PERCENT = "null"
+        # try:
+        #     LOSS_PERCENT =  log["_source"]['summary']['packetLossPercent']
+        # except:
+        #     LOSS_PERCENT = "null"
 
-        if DEST_GROUP != "null":
+        # if DEST_GROUP != "null":
 
-            DEST_GROUP=DEST_GROUP.split("-")[0]            
+        #     DEST_GROUP=DEST_GROUP.split("-")[0]            
 
-            result_dics['PROBE_HOSTNAME'] = PROBE_HOSTNAME            
-            result_dics['DEST_GROUP'] = DEST_GROUP        
-            result_dics['LATENCY'] = LATENCY       
-            result_dics['LOSS_PERCENT'] = LOSS_PERCENT
+        #     result_dics['PROBE_HOSTNAME'] = PROBE_HOSTNAME            
+        #     result_dics['DEST_GROUP'] = DEST_GROUP        
+        #     result_dics['LATENCY'] = LATENCY       
+        #     result_dics['LOSS_PERCENT'] = LOSS_PERCENT
 
 
-            print (PROBE_HOSTNAME)
-            print (DEST_GROUP)
-            print (LATENCY)
-            print (LOSS_PERCENT)
-            print(result_dics)
+        #     print (PROBE_HOSTNAME)
+        #     print (DEST_GROUP)
+        #     print (LATENCY)
+        #     print (LOSS_PERCENT)
+        #     print(result_dics)
 
-            #rename sgn_ping_to_zabbix_proxy-20221212T1503  -> sgn_ping_to_zabbix_proxy, cut  -
+        #     #rename sgn_ping_to_zabbix_proxy-20221212T1503  -> sgn_ping_to_zabbix_proxy, cut  -
 
-            with open(JSONFILE, "a+") as file:
-                file.write(json.dumps(result_dics))
-                file.write (",")
-                file.close()
+        #     with open(JSONFILE, "a+") as file:
+        #         file.write(json.dumps(result_dics))
+        #         file.write (",")
+        #         file.close()
 
 def main():
-    analyze(probe_icmp)
+    analyze(epayment_event)
 
 if __name__ == "__main__":
     result_dics={} 

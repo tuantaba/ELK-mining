@@ -16,11 +16,11 @@ ELK_HOST = config.get('DE', 'ELK_HOST')
 INDEX_NAME = config.get('DE', 'INDEX_NAME')
 TIME_GET_LOG = config.get('DE', 'TIME_GET_LOG')
 
-probe_icmp = {
+epayment_event = {
             'query': {
                 "bool":{
                     "should":[                                
-                        {"match_phrase_prefix": {"commandResult": "PING"}}
+                        {"match_phrase_prefix": {"message": " epayment.fpt.com.vn"}}
                     ],            
                     "filter":[
                         {"range": {"@timestamp": {"gte": "now-" + TIME_GET_LOG}}}
@@ -28,3 +28,9 @@ probe_icmp = {
                 }
             }
     } #end
+
+# epayment_event = {
+#             'query': {
+#                 "bool":{
+#                     "must":[                                
+#                         {"match": {"programname": "rabbit"}},    
