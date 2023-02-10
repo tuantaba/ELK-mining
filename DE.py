@@ -32,15 +32,14 @@ def analyze(search_param ):
 
     # print (response)
     COUNTER_ERROR=len(response['hits']['hits'])
-    print ("len_hit is : ", len_hit)
     if len(response['hits']['hits']) == 0:
         print ("The query with no matched line, exit analyze() function...")
-        # exit()
+        exit()
 
     print ("Analyzing..")
 
     result_dics = {}  #inital dics()
-    for log in response['hits']['hits'][0]:
+    for log in response['hits']['hits']:
         print ("----")
         # print (log)
         print ("print _source")
@@ -69,7 +68,7 @@ def analyze(search_param ):
         Timestamp =  log["_source"]['@timestamp']
     #out of for
     if status_code != "null" :         
-        msg = msg_for_http(domain,status_code,method,path,COUNTER_ERROR,Timestamp," ")        
+        msg = msg_for_http(domain,COUNTER_ERROR,status_code,method,path,Timestamp," ")        
         try:
             # print ("alert ! , length is ", len( response['hits']['hits'] ))
             print (msg)
@@ -88,11 +87,10 @@ def fix_bug_send_telegram(_string):
     return _string
 
 def msg_for_http(arg1, arg2, arg3, arg4, arg5, arg6, arg7):
-    msg = "<strong>{}</strong> \n" \
+    msg = "<strong>{}</strong> - {} 5xx/1m \n" \
             "     http_code: {}\n" \
             "     http_method: {} \n" \
-            "     http_url: {} \n" \
-            "     Error_count: {} /1m \n" \
+            "     http_url: {} \n" \            
             "     Time: {} \n" \
             "<pre><code> \n" \
             "{}\n" \
