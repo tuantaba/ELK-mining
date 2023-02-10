@@ -13,10 +13,10 @@ except Exception as err:
     exit(1)    
 
 def make_query(filter):    
-    INDEX_NAME="f5-asm-2023.02.0*"
+    # INDEX_NAME="f5-asm-2023.02.0*"
     try:        
         # pass filter query to the client's search() method
-        response = elastic_client.search(index=INDEX_NAME, body=filter)
+        response = elastic_client.search(index=INDEX_NAME,size=total_docs,track_total_hits=True,query=filter)
         # print the query response
         print ('response["hits"]:', len(response["hits"]))
         print ('response TYPE:', type(response))
