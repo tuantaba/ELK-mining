@@ -31,7 +31,8 @@ def analyze(search_param ):
     msg_list = [] # List intialization
 
     print (response)
-
+    len_hit=len(response['hits']['hits'])
+    print ("len_hit is : ", len_hit)
     if len(response['hits']['hits']) == 0:
         print ("The query with no matched line, exit analyze() function...")
         # exit()
