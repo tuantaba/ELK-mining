@@ -87,10 +87,10 @@ def fix_bug_send_telegram(_string):
     return _string
 
 def msg_for_http(arg1, arg2, arg3, arg4, arg5, arg6, arg7):
-    msg = "<strong>{}</strong> - {} 5xx/1m \n" \
+    msg = "<strong>{}</strong> - {} error 5xx/1m \n" \
             "     http_code: {}\n" \
             "     http_method: {} \n" \
-            "     http_url: {} \n" \            
+            "     http_url: {} \n" \
             "     Time: {} \n" \
             "<pre><code> \n" \
             "{}\n" \
