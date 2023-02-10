@@ -36,7 +36,7 @@ epayment_event = {
                         {
                             "bool": {
                                 "should": [
-                                        {"match": {"url.domain": "epayment.fpt.com.vn"}},
+                                        {"match": {"http.response.status_code": "405"}},
                                         {"match": {"http.response.status_code": "500"}},
                                         {"match": {"http.response.status_code": "501"}},
                                         {"match": {"http.response.status_code": "502"}},

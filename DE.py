@@ -4,7 +4,7 @@ import json
 #import search
 
 
-JSONFILE = "prom_exporter/output_network.json"
+JSONFILE = "prom_exporter/output_epayment.json"
 def msg_when_elk_query_fail(error):
     msg = "<strong> ELK query error</strong> \n" \
             "<pre><code> \n" \
@@ -31,7 +31,7 @@ def analyze(search_param ):
     msg_list = [] # List intialization
 
     # print (response)
-    len_hit=len(response['hits']['hits'])
+    COUNTER_ERROR=len(response['hits']['hits'])
     print ("len_hit is : ", len_hit)
     if len(response['hits']['hits']) == 0:
         print ("The query with no matched line, exit analyze() function...")
@@ -40,7 +40,7 @@ def analyze(search_param ):
     print ("Analyzing..")
 
     result_dics = {}  #inital dics()
-    for log in response['hits']['hits']:
+    for log in response['hits']['hits'][0]:
         print ("----")
         # print (log)
         print ("print _source")
@@ -67,19 +67,19 @@ def analyze(search_param ):
             status_code = "null"
 
         Timestamp =  log["_source"]['@timestamp']
-
-        if status_code != "null" :         
-            msg = msg_for_http(domain,status_code,method,path,Timestamp,"body message is not found")        
-            try:
-                print ("alert ! , length is ", len( response['hits']['hits'] ))
-                print (msg)
-                alert.send_telegram(msg, CHAT_ID)
-                
-            except Exception as e:
-                print  ("Error", e)
-                msg =  msg_when_elk_query_fail(e)
-                alert.send_telegram(msg, CHAT_ID_FOR_ADMIN)
-                pass
+    #out of for
+    if status_code != "null" :         
+        msg = msg_for_http(domain,status_code,method,path,COUNTER_ERROR,Timestamp," ")        
+        try:
+            # print ("alert ! , length is ", len( response['hits']['hits'] ))
+            print (msg)
+            alert.send_telegram(msg, CHAT_ID_NORMAL)
+            
+        except Exception as e:
+            print  ("Error", e)
+            msg =  msg_when_elk_query_fail(e)
+            alert.send_telegram(msg, CHAT_ID_FOR_ADMIN)
+            pass
 
 def fix_bug_send_telegram(_string):
     _string=_string.replace("<", "tag;")
@@ -87,11 +87,12 @@ def fix_bug_send_telegram(_string):
     _string=_string.replace("&", "tag;")
     return _string
 
-def msg_for_http(arg1, arg2, arg3, arg4, arg5, arg6):
+def msg_for_http(arg1, arg2, arg3, arg4, arg5, arg6, arg7):
     msg = "<strong>{}</strong> \n" \
             "     http_code: {}\n" \
             "     http_method: {} \n" \
             "     http_url: {} \n" \
+            "     Error_count: {} /1m \n" \
             "     Time: {} \n" \
             "<pre><code> \n" \
             "{}\n" \
