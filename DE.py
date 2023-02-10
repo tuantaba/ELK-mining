@@ -30,7 +30,7 @@ def analyze(search_param ):
 
     msg_list = [] # List intialization
 
-    print (response)
+    # print (response)
     len_hit=len(response['hits']['hits'])
     print ("len_hit is : ", len_hit)
     if len(response['hits']['hits']) == 0:
@@ -42,55 +42,61 @@ def analyze(search_param ):
     result_dics = {}  #inital dics()
     for log in response['hits']['hits']:
         print ("----")
-        print (log)
-        
-    #     #need to edit
-    #     print (log)
-        # print ("print _source")
-        # print(log["_source"])
+        # print (log)
+        print ("print _source")
+        print(log["_source"])
 
+        try:
+            domain =  log["_source"]['url']['domain']
+        except:
+            domain = "null"
 
-        # try:
-        #     PROBE_HOSTNAME =  log["_source"]['deviceHostName']            
-        # except:
-        #     PROBE_HOSTNAME = "null"        
-        # try:
-        #     DEST_GROUP =  log["_source"]['taskName']
-        # except:
-        #     DEST_GROUP = "null"
-                    
-        # try:
-        #     LATENCY =  log["_source"]['summary']['latency']
-        # except:
-        #     LATENCY = "null"
+        try:
+            path =  log["_source"]['url']['path']
+        except:
+            path = "null"
 
-        # try:
-        #     LOSS_PERCENT =  log["_source"]['summary']['packetLossPercent']
-        # except:
-        #     LOSS_PERCENT = "null"
+        try:
+            method =  log["_source"]['http']['request']['method']
+        except:
+            method = "null"
 
-        # if DEST_GROUP != "null":
+        try:
+            status_code =  log["_source"]['http']['response']['status_code']
+        except:
+            status_code = "null"
 
-        #     DEST_GROUP=DEST_GROUP.split("-")[0]            
+        Timestamp =  log["_source"]['@timestamp']
 
-        #     result_dics['PROBE_HOSTNAME'] = PROBE_HOSTNAME            
-        #     result_dics['DEST_GROUP'] = DEST_GROUP        
-        #     result_dics['LATENCY'] = LATENCY       
-        #     result_dics['LOSS_PERCENT'] = LOSS_PERCENT
+        if status_code != "null" :         
+            msg = msg_for_http(domain,status_code,method,path,Timestamp,"body message is not found")        
+            try:
+                print ("alert ! , length is ", len( response['hits']['hits'] ))
+                print (msg)
+                alert.send_telegram(msg, CHAT_ID)
+                
+            except Exception as e:
+                print  ("Error", e)
+                msg =  msg_when_elk_query_fail(e)
+                alert.send_telegram(msg, CHAT_ID_FOR_ADMIN)
+                pass
 
+def fix_bug_send_telegram(_string):
+    _string=_string.replace("<", "tag;")
+    _string=_string.replace(">", "tag;")
+    _string=_string.replace("&", "tag;")
+    return _string
 
-        #     print (PROBE_HOSTNAME)
-        #     print (DEST_GROUP)
-        #     print (LATENCY)
-        #     print (LOSS_PERCENT)
-        #     print(result_dics)
-
-        #     #rename sgn_ping_to_zabbix_proxy-20221212T1503  -> sgn_ping_to_zabbix_proxy, cut  -
-
-        #     with open(JSONFILE, "a+") as file:
-        #         file.write(json.dumps(result_dics))
-        #         file.write (",")
-        #         file.close()
+def msg_for_http(arg1, arg2, arg3, arg4, arg5, arg6):
+    msg = "<strong>{}</strong> \n" \
+            "     http_code: {}\n" \
+            "     http_method: {} \n" \
+            "     http_url: {} \n" \
+            "     Time: {} \n" \
+            "<pre><code> \n" \
+            "{}\n" \
+            "</code></pre>". format(arg1,arg2,arg3,arg4,arg5,arg6,arg7)
+    return msg
 
 def main():
     analyze(epayment_event)
