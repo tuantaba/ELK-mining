@@ -32,16 +32,16 @@ def analyze(search_param ):
 
     print (response)
 
-    # if len(response['hits']['hits']) == 0:
-    #     print ("The query with no matched line, exit analyze() function...")
-    #     # exit()
+    if len(response['hits']['hits']) == 0:
+        print ("The query with no matched line, exit analyze() function...")
+        # exit()
 
     print ("Analyzing..")
 
     result_dics = {}  #inital dics()
-    # for log in response['hits']['hits']:
-    #     print ("----")
-    #     print (log)
+    for log in response['hits']['hits']:
+        print ("----")
+        print (log)
         
     #     #need to edit
     #     print (log)
