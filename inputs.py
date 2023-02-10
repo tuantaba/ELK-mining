@@ -23,8 +23,8 @@ TIME_GET_LOG = config.get('DE', 'TIME_GET_LOG')
 epayment_event = {
             'query': {
                 "bool":{
-                    "should":[                                
-                        {"match_phrase_prefix": {"message": "epayment.fpt.com.vn"}}
+                    "must":[                                
+                        {"match": {"url.domain": "epayment.fpt.com.vn"}}
                     ],            
                     "filter":[
                         {"range": {"@timestamp": {"gte": "now-" + TIME_GET_LOG}}}

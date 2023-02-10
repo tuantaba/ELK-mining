@@ -5,7 +5,7 @@ from inputs import *
 
 try:
     print("Try to connect to server", ELK_HOST)
-    elastic_client = Elasticsearch([ELK_HOST], http_auth=(USERNAME, PASSWORD), verify_certs=False)
+    elastic_client = Elasticsearch([ELK_HOST], maxsize=2500, http_auth=(USERNAME, PASSWORD), verify_certs=False)
     print("Connection to ES Server successful")
 except Exception as err:
     print("Error: Unable to connect to server ", ELK_HOST)

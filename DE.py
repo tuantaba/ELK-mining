@@ -30,7 +30,7 @@ def analyze(search_param ):
 
     msg_list = [] # List intialization
 
-    # print (response)
+    print (response)
 
     # if len(response['hits']['hits']) == 0:
     #     print ("The query with no matched line, exit analyze() function...")
