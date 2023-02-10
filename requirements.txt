@@ -1,5 +1,5 @@
 requests
-elasticsearch>=5.0.0,<6.0.0
+elasticsearch==8.5.1
 prometheus_client
 #elasticsearch5
 #elasticsearch-dsl5
