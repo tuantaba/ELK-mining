@@ -19,6 +19,7 @@ USERNAME = config.get('DE', 'USERNAME')
 PASSWORD = config.get('DE', 'PASSWORD')
 
 INDEX_NAME = config.get('DE', 'INDEX_NAME')
+INDEX_NAME_DURATION_TIME = config.get('DE', 'INDEX_NAME_DURATION_TIME')
 TIME_GET_LOG = config.get('DE', 'TIME_GET_LOG')
 
 
@@ -35,8 +36,7 @@ epayment_event = {
                             },
                         {
                             "bool": {
-                                "should": [
-                                        {"match": {"http.response.status_code": "405"}},
+                                "should": [                                        
                                         {"match": {"http.response.status_code": "500"}},
                                         {"match": {"http.response.status_code": "501"}},
                                         {"match": {"http.response.status_code": "502"}},
@@ -47,7 +47,8 @@ epayment_event = {
                             }
                         }
                     ],
-                    "must_not":[                        
+                    "must_not":[   
+                        {"match_phrase_prefix": {"url.path": "/Print/Index"}}
                     ],                    
 
                     "filter":[
@@ -58,8 +59,34 @@ epayment_event = {
     } #end
 
 
-# epayment_event = {
-#             'query': {
-#                 "bool":{
-#                     "must":[                                
-#                         {"match": {"programname": "rabbit"}},   
+
+
+epayment_duration_event = {
+            'query': {
+                "bool":{
+                    "must":[                                
+                            {
+                                "bool": {
+                                    "should": [
+                                        {"exists": {"field": "url.path"}} 
+                                    ]
+                                }
+                            },
+                        {
+                            "bool": {
+                                "should": [                                        
+                                        {"time-taken": {"gte": "0.1"}}
+                                ]
+                            }
+                        }
+                    ],
+                    "must_not":[   
+                        # {"match_phrase_prefix": {"url.path": "/Print/Index"}}
+                    ],                    
+
+                    "filter":[
+                        {"range": {"@timestamp": {"gte": "now-" + TIME_GET_LOG }}}
+                    ]
+                }
+            }
+    } #end

@@ -12,8 +12,7 @@ except Exception as err:
     print (err)
     exit(1)    
 
-def make_query(filter):    
-    # INDEX_NAME="f5-asm-2023.02.0*"
+def make_query(INDEX_NAME, filter):        
     try:        
         # pass filter query to the client's search() method
         response = elastic_client.search(index=INDEX_NAME,body=filter,size=9999,track_total_hits=True)

@@ -19,7 +19,7 @@ except Exception as e:
     msg =  msg_when_elk_query_fail(e)
     # alert.send_telegram(msg, CHAT_ID_FOR_ADMIN)
 
-def analyze(INDEX_NAME, search_param ):
+def analyze(INDEX_NAME_DURATION_TIME, search_param ):
     try:
         print ("Quering..")
         response =  search.make_query(search_param)
@@ -99,7 +99,7 @@ def msg_for_http(arg1, arg2, arg3, arg4, arg5, arg6, arg7):
     return msg
 
 def main():
-    analyze(epayment_event)
+    analyze(epayment_duration_event)
 
 if __name__ == "__main__":
     result_dics={} 
