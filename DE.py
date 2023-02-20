@@ -19,10 +19,10 @@ except Exception as e:
     msg =  msg_when_elk_query_fail(e)
     # alert.send_telegram(msg, CHAT_ID_FOR_ADMIN)
 
-def analyze(INDEX_NAME, search_param ):
+def analyze(search_param ):
     try:
         print ("Quering..")
-        response =  search.make_query(search_param)
+        response =  search.make_query(INDEX_NAME, search_param)
     except Exception as e:
         print ("Exception: ", e)
         msg =  msg_when_elk_query_fail(e)

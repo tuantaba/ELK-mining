@@ -4,7 +4,7 @@ import json
 #import search
 
 
-JSONFILE = "/home/fimadmin/ELK-mining/prom_exporter/output_epayment.json"
+JSONFILE = "/home/fimadmin/ELK-mining/prom_exporter/output_epayment_duration_time.json"
 def msg_when_elk_query_fail(error):
     msg = "<strong> ELK query error</strong> \n" \
             "<pre><code> \n" \
@@ -19,10 +19,10 @@ except Exception as e:
     msg =  msg_when_elk_query_fail(e)
     # alert.send_telegram(msg, CHAT_ID_FOR_ADMIN)
 
-def analyze(INDEX_NAME_DURATION_TIME, search_param ):
+def analyze(search_param ):
     try:
         print ("Quering..")
-        response =  search.make_query(search_param)
+        response =  search.make_query(INDEX_NAME_DURATION_TIME, search_param)
     except Exception as e:
         print ("Exception: ", e)
         msg =  msg_when_elk_query_fail(e)
@@ -46,57 +46,51 @@ def analyze(INDEX_NAME_DURATION_TIME, search_param ):
         print(log["_source"])
 
         try:
-            domain =  log["_source"]['url']['domain']
-        except:
-            domain = "null"
-
-        try:
-            path =  log["_source"]['url']['path']
-        except:
-            path = "null"
-
-        try:
             method =  log["_source"]['http']['request']['method']
         except:
             method = "null"
 
         try:
-            status_code =  log["_source"]['http']['response']['status_code']
+            time-taken =  log["_source"]['time-taken']
         except:
-            status_code = "null"
-
+            time-taken = "null"
         Timestamp =  log["_source"]['@timestamp']
-    #out of for
-    if status_code != "null" :         
-        msg = msg_for_http(domain,COUNTER_ERROR,status_code,method,path,Timestamp," ")        
-        try:
-            # print ("alert ! , length is ", len( response['hits']['hits'] ))
-            print (msg)
-            alert.send_telegram(msg, CHAT_ID_NORMAL)
+
+        if time-taken != "null":
+            result_dics['method'] = method
+            result_dics['time-taken'] = time-taken
+
+    # #out of for
+    # if status_code != "null" :         
+    #     msg = msg_for_http(domain,COUNTER_ERROR,status_code,method,path,Timestamp," ")        
+    #     try:
+    #         # print ("alert ! , length is ", len( response['hits']['hits'] ))
+    #         print (msg)
+    #         alert.send_telegram(msg, CHAT_ID_NORMAL)
             
-        except Exception as e:
-            print  ("Error", e)
-            msg =  msg_when_elk_query_fail(e)
-            alert.send_telegram(msg, CHAT_ID_FOR_ADMIN)
-            pass
+    #     except Exception as e:
+    #         print  ("Error", e)
+    #         msg =  msg_when_elk_query_fail(e)
+    #         alert.send_telegram(msg, CHAT_ID_FOR_ADMIN)
+    #         pass
 
-def fix_bug_send_telegram(_string):
-    _string=_string.replace("<", "tag;")
-    _string=_string.replace(">", "tag;")
-    _string=_string.replace("&", "tag;")
-    _string=_string.replace("#", "tag;")
-    return _string
+# def fix_bug_send_telegram(_string):
+#     _string=_string.replace("<", "tag;")
+#     _string=_string.replace(">", "tag;")
+#     _string=_string.replace("&", "tag;")
+#     _string=_string.replace("#", "tag;")
+# #     return _string
 
-def msg_for_http(arg1, arg2, arg3, arg4, arg5, arg6, arg7):
-    msg = "<strong>{}</strong> - {} error 5xx/1m \n" \
-            "     http_code: {}\n" \
-            "     http_method: {} \n" \
-            "     http_url: {} \n" \
-            "     Time: {} \n" \
-            "<pre><code> \n" \
-            "{}\n" \
-            "</code></pre>". format(arg1,arg2,arg3,arg4,arg5,arg6,arg7)
-    return msg
+# def msg_for_http(arg1, arg2, arg3, arg4, arg5, arg6, arg7):
+#     msg = "<strong>{}</strong> - {} error 5xx/1m \n" \
+#             "     http_code: {}\n" \
+#             "     http_method: {} \n" \
+#             "     http_url: {} \n" \
+#             "     Time: {} \n" \
+#             "<pre><code> \n" \
+#             "{}\n" \
+#             "</code></pre>". format(arg1,arg2,arg3,arg4,arg5,arg6,arg7)
+#     return msg
 
 def main():
     analyze(epayment_duration_event)

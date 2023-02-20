@@ -71,14 +71,14 @@ epayment_duration_event = {
                                         {"exists": {"field": "url.path"}} 
                                     ]
                                 }
-                            },
-                        {
-                            "bool": {
-                                "should": [                                        
-                                        {"time-taken": {"gte": "0.1"}}
-                                ]
                             }
-                        }
+                        # {
+                        #     "bool": {
+                        #         "should": [                                        
+                        #                 {"time-taken": {"gte": "0.1"}}
+                        #         ]
+                        #     }
+                        # }
                     ],
                     "must_not":[   
                         # {"match_phrase_prefix": {"url.path": "/Print/Index"}}
