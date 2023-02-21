@@ -60,6 +60,13 @@ def analyze(search_param ):
             result_dics['method'] = method
             result_dics['time_taken'] = time_taken
 
+            with open(JSONFILE, "a+") as file:
+                file.write(json.dumps(result_dics))
+                file.write (",")
+                file.close()
+
+    print (result_dics)
+
     # #out of for
     # if status_code != "null" :         
     #     msg = msg_for_http(domain,COUNTER_ERROR,status_code,method,path,Timestamp," ")        
