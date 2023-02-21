@@ -51,14 +51,14 @@ def analyze(search_param ):
             method = "null"
 
         try:
-            time-taken =  log["_source"]['time-taken']
+            time_taken =  log["_source"]['time-taken']
         except:
-            time-taken = "null"
+            time_taken = "null"
         Timestamp =  log["_source"]['@timestamp']
 
-        if time-taken != "null":
+        if time_taken != "null":
             result_dics['method'] = method
-            result_dics['time-taken'] = time-taken
+            result_dics['time_taken'] = time_taken
 
     # #out of for
     # if status_code != "null" :         

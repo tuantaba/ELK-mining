@@ -15,7 +15,7 @@ except Exception as err:
 def make_query(INDEX_NAME, filter):        
     try:        
         # pass filter query to the client's search() method
-        response = elastic_client.search(index=INDEX_NAME,body=filter,size=9999,track_total_hits=True)
+        response = elastic_client.search(index=INDEX_NAME,body=filter,size=9999,track_total_hits=True, request_timeout=30)
         # print the query response
         print ('response["hits"]:', len(response["hits"]))
         print ('response TYPE:', type(response))
